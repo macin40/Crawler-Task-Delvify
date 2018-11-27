@@ -13,7 +13,7 @@ Steps:
 
 2.And mapped each sub-category with the Promise,calling them parallely to fetch top 100 product list.
 
-3.Crawled all the product info under the specific class. e.g. 
+3.Crawled all the product info under the specific class. e.g. `http://www.akmall.com/bestseller/BestShopCtg.do?ctgId=16`
 ****
 Route to fetch JSON - `http://localhost:4000/product`
 ****
