@@ -1,0 +1,33 @@
+{
+  "name": "web-scraper",
+  "version": "1.0.0",
+  "description": "scraping",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "fs": "^0.0.1-security",
+    "google-translate": "^2.2.0",
+    "he": "^1.2.0",
+    "html-table-to-json": "^0.4.0",
+    "html2json": "^1.0.2",
+    "node-html-parser": "^1.1.10",
+    "nodeQuery": "0.0.9-1",
+    "nodemon": "^1.18.5",
+    "request": "^2.88.0",
+    "table-to-json": "^0.13.0",
+    "tabletojson": "^0.9.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon idnex.js"
+  },
+  "keywords": [
+    "scrap",
+    "crawl"
+  ],
+  "author": "Himanshu",
+  "license": "ISC"
+}
