@@ -6,7 +6,8 @@ const tabletojson = require('tabletojson');
 const he = require('he');
 const googleTranslate = require('google-translate')(process.env.GOOGLE_API_KEY);
 const querystring = require('querystring');
-
+const fs = require('fs');
+const path = require('path');
 module.exports = router;
 
 router.get("/", (req, res) => {
@@ -170,7 +171,19 @@ router.get("/product", (req, res) => {
             // for (let index = 0; index < result.length; index++) {
             //     resp += result[index];
             // }
-            res.send(result)
+            try {
+                fs.unlinkSync('./public/result.json');
+                console.log("Old File Deleted!!")
+            } catch (e) {
+                console.log("No file exists!");
+            } finally {
+                fs.appendFileSync('./public/result.json', JSON.stringify(result));
+                // res.end('<a href="'+ req.protocol + '://' + req.get('host') + '/public/result.json">'+ 'File Url</a>')
+                res.download((path.join(__dirname, 'public/result.json')));
+
+            }
+
+
         });
 
     });
@@ -294,6 +307,7 @@ function convertToJSON(obj, cb) {
             /*********************************/
 
             /* Pushing final object to the array to display response **/
+
             finalResponse.push(resultObj);
         });
         cb(finalResponse);

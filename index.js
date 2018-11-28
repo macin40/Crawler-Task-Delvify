@@ -6,7 +6,6 @@ const fs = require('fs');
 
 
 const routes = require("./routes");
-app.use(express.static('public'));
 app.listen(4000, () => {
   console.log("scraping server is listening on port 4000");
 });
