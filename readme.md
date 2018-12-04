@@ -29,6 +29,7 @@ Steps to run the code :
 
 3. Run the command `node index.js` in terminal
 
-4. Now open the `http://localhost:4000/product` in browser, you file will be downloaded as `result.json` and also you can find that file manually under the project directory `web-scrapper->public->result.json`
+~~4. Now open the `http://localhost:4000/product` in browser, you file will be downloaded as `result.json` and also you can find that file manually under the project directory `web-scrapper->public->result.json`
 
+4.The scrapping process will start , and the required file will be created in the public folder, as `result.json` 
 ****
