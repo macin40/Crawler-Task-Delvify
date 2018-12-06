@@ -10,12 +10,15 @@ const fs = require('fs');
 const path = require('path');
 module.exports = router;
 
-const file = fs.createWriteStream('./public/result.json', {flags: 'w'});
-
+let file;
 try {
     console.log("Old File Deleted!!")
 } catch (e) {
     console.log("No file exists!");
+}
+finally {
+    file = fs.createWriteStream('./public/result.json', {flags: 'w'});
+
 }
 router.getTopProducts = (req, res) => {
 
@@ -64,10 +67,14 @@ router.getTopProducts = (req, res) => {
                 urlList = urlList.concat(data[index]);
             }
             console.log("done");
+            file.write("[");
             for (let counter = 0; counter < urlList.length; counter++) {
                 const data = await translateProduct(urlList[counter]);
                 file.write(JSON.stringify(data));
+                if (counter < urlList.length - 1)
+                    file.write(",");
             }
+            file.write("]");
         });
 
     });
@@ -165,7 +172,7 @@ function fetchItem(url) {
         const resultObj = {};
         console.log(url)
         request(url, function (error, response, html) {
-            console.log(error)
+            console.log("error->",error);
             let localeKey = [], localeValue = [];
             let $ = cheerio.load(html);
             let productDetail = $(".tbl_type07").html();
