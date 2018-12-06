@@ -27,9 +27,12 @@ Steps to run the code :
 
 2. Navigate to the directory and run the command in the terminal `npm install`
 
-3. Run the command `node index.js` in terminal
+3. Run the command `node index.js > logger.txt` in terminal
 
 ~~4. Now open the `http://localhost:4000/product` in browser, you file will be downloaded as `result.json` and also you can find that file manually under the project directory `web-scrapper->public->result.json`~~
 
-4.The scrapping process will start , and the required file will be created in the public folder, as `result.json` 
+4.The scrapping process will start , and the required file will be created in the public folder, as `result.json` , and also to check the scrapping process go to the project directory and open file `logger.txt` which gets generater on running command `node index.js > logger.txt`
+
+###### The logger.txt will contain verbose scrapping process, for all the sub-product and there top 100 items.
+
 ****
