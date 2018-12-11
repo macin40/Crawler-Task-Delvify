@@ -139,7 +139,7 @@ function convertToJSON(obj, cb) {
                 productListArray.push('http://www.akmall.com/goods/GoodsDetail.do?goods_id=' + productUrl[0] + '&urlpath=' + productUrl[1].trim() + productUrl[2].trim());
             }
         });
-        // console.log(productListArray.length);
+        console.log(productListArray.length);
         cb(productListArray);
     });
 }
