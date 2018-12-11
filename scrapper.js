@@ -68,6 +68,7 @@ router.getTopProducts = (req, res) => {
             }
             console.log("done");
             file.write("[");
+            // for (let counter = 0; counter < 2; counter++) {
             for (let counter = 0; counter < urlList.length; counter++) {
                 const data = await translateProduct(urlList[counter]);
                 file.write(JSON.stringify(data));
@@ -138,7 +139,7 @@ function convertToJSON(obj, cb) {
                 productListArray.push('http://www.akmall.com/goods/GoodsDetail.do?goods_id=' + productUrl[0] + '&urlpath=' + productUrl[1].trim() + productUrl[2].trim());
             }
         });
-        console.log(productListArray.length);
+        // console.log(productListArray.length);
         cb(productListArray);
     });
 }
@@ -149,7 +150,7 @@ function translateProduct(url) {
             resolve(data)
         }).then((err) => {
             reject(err)
-            console.log(err)
+            // console.log(err)
         });
     })
 
@@ -169,12 +170,16 @@ function mapPromiseToMakeSync(obj) {
 
 function fetchItem(url) {
     return new Promise((resolve, reject) => {
-        const resultObj = {};
+        const resultObj = {review: [], imageUrl: []};
         console.log(url)
         request(url, function (error, response, html) {
-            console.log("error->",error);
+            console.log("error->", error);
             let localeKey = [], localeValue = [];
             let $ = cheerio.load(html);
+            $(".thumb_s").find('img').each((index, element) => {
+                let el = cheerio.load(element);
+                resultObj.imageUrl.push("http:" + el("img").attr('src'));
+            });
             let productDetail = $(".tbl_type07").html();
             if (productDetail) {
                 productDetail = productDetail.substring(productDetail.indexOf('<tbody>'), productDetail.indexOf('</tbody>') + 1);
@@ -254,6 +259,11 @@ function fetchItem(url) {
                 // console.log("Written");
                 // console.log(resultObj)
 
+                let review = $(".premium").find('.review_content').each((index, element) => {
+                    let el = cheerio.load(element).html().toString();
+                    resultObj.review.push(he.decode(el.replace(/<[^>]+>/g, ' ').toString()));
+
+                });
             }
             resolve(resultObj);
         });
