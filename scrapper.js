@@ -71,7 +71,7 @@ router.getTopProducts = (req, res) => {
             // for (let counter = 0; counter < 2; counter++) {
             for (let counter = 0; counter < urlList.length; counter++) {
                 const data = await translateProduct(urlList[counter]);
-                file.write(JSON.stringify(data));
+                file.write(JSON.stringify(data, null, 4));
                 if (counter < urlList.length - 1)
                     file.write(",");
             }
