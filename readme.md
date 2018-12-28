@@ -23,7 +23,7 @@ Refer to the file `route.js` from line number `126`.
 ****
 Steps to run the code : 
 
-1. Take the GIT clone from https://github.com/abhishek-mani/Crawler-Task-Delvify.git
+1. Take the GIT clone from https://github.com/macin40/Crawler-Task-Delvify.git
 
 2. Navigate to the directory and run the command in the terminal `npm install`
 
